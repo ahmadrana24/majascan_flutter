@@ -163,10 +163,11 @@ class MAJAScannerController: UIViewController {
                       self.session.startRunning()
                     
                       self.isSessionRunning = self.session.isRunning
-                      guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
-                      guard device.hasTorch else { return }
-                      do {
-                          try device.lockForConfiguration()
+                      //add flash
+                    //   guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+                    //   guard device.hasTorch else { return }
+                    //   do {
+                    //       try device.lockForConfiguration()
                           do {
                               try device.setTorchModeOn(level: 1.0)
                               flashlightButton.isSelected = true
@@ -174,9 +175,9 @@ class MAJAScannerController: UIViewController {
                               print(error)
                           }
                           device.unlockForConfiguration()
-                      } catch {
-                          print(error)
-                      }
+                    //   } catch {
+                    //       print(error)
+                    //   }
                   case .notAuthorized:
                       DispatchQueue.main.async {
                        let alertController = UIAlertController(title: Localizable.ScanPage.scannerTitle.localized, message: "\(Localizable.ScanPage.cameraPermisionNonOpen.localized)", preferredStyle: .alert)
