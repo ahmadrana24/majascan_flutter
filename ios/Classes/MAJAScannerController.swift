@@ -161,8 +161,22 @@ class MAJAScannerController: UIViewController {
                       // Only setup observers and start the session if setup succeeded.
                       self.addObservers()
                       self.session.startRunning()
+                    
                       self.isSessionRunning = self.session.isRunning
-                      
+                      guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+                      guard device.hasTorch else { return }
+                      do {
+                          try device.lockForConfiguration()
+                          do {
+                              try device.setTorchModeOn(level: 1.0)
+                              flashlightButton.isSelected = true
+                          } catch {
+                              print(error)
+                          }
+                          device.unlockForConfiguration()
+                      } catch {
+                          print(error)
+                      }
                   case .notAuthorized:
                       DispatchQueue.main.async {
                        let alertController = UIAlertController(title: Localizable.ScanPage.scannerTitle.localized, message: "\(Localizable.ScanPage.cameraPermisionNonOpen.localized)", preferredStyle: .alert)
@@ -211,7 +225,12 @@ class MAJAScannerController: UIViewController {
                                                object: session)
     }
     
-    private func removeObservers() {
+    private func removeObservers() { 
+        // removeFlash
+           if (device.torchMode == AVCaptureDevice.TorchMode.on) {
+                device.torchMode = AVCaptureDevice.TorchMode.off
+                flashlightButton.isSelected = false
+            } 
            NotificationCenter.default.removeObserver(self)
      }
     
