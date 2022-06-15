@@ -168,6 +168,7 @@ class MAJAScannerController: UIViewController {
                     //   guard device.hasTorch else { return }
                     //   do {
                     //       try device.lockForConfiguration()
+                          let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
                           do {
                               try device.setTorchModeOn(level: 1.0)
                             //   flashlightButton.isSelected = true
@@ -228,6 +229,7 @@ class MAJAScannerController: UIViewController {
     
     private func removeObservers() { 
         // removeFlash
+           let device = AVCaptureDevice.default(for: AVMediaType.video)
            if (device.torchMode == AVCaptureDevice.TorchMode.on) {
                 device.torchMode = AVCaptureDevice.TorchMode.off
                 // flashlightButton.isSelected = false
