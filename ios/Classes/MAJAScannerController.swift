@@ -330,7 +330,7 @@ class MAJAScannerController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     // On Method
-    @obj func turnFlashLightOnAtStart(){
+    func turnFlashLightOnAtStart(){
          guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         guard device.hasTorch else { return }
         do {
@@ -351,7 +351,7 @@ class MAJAScannerController: UIViewController {
         }
     }
     // On Method
-    @obj func turnFlashLightOffAtEnd(){
+    func turnFlashLightOffAtEnd(){
          guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         guard device.hasTorch else { return }
         do {
