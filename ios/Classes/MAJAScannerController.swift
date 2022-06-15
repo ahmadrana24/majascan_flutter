@@ -164,21 +164,7 @@ class MAJAScannerController: UIViewController {
                     
                       self.isSessionRunning = self.session.isRunning
                       //add flash
-                    //   guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
-                    //   guard device.hasTorch else { return }
-                    //   do {
-                    //       try device.lockForConfiguration()
-                          let device = AVCaptureDevice.default(for: AVMediaType.video) 
-                          do {
-                              try device.setTorchModeOn(level: 1.0)
-                            //   flashlightButton.isSelected = true
-                          } catch {
-                              print(error)
-                          }
-                          device.unlockForConfiguration()
-                    //   } catch {
-                    //       print(error)
-                    //   }
+                    self.turnFlashLightOnAtStart();
                   case .notAuthorized:
                       DispatchQueue.main.async {
                        let alertController = UIAlertController(title: Localizable.ScanPage.scannerTitle.localized, message: "\(Localizable.ScanPage.cameraPermisionNonOpen.localized)", preferredStyle: .alert)
@@ -229,11 +215,7 @@ class MAJAScannerController: UIViewController {
     
     private func removeObservers() { 
         // removeFlash
-           let device = AVCaptureDevice.default(for: AVMediaType.video)
-           if (device.torchMode == AVCaptureDevice.TorchMode.on) {
-                device.torchMode = AVCaptureDevice.TorchMode.off
-                // flashlightButton.isSelected = false
-            } 
+           self.turnFlashLightOffAtEnd();
            NotificationCenter.default.removeObserver(self)
      }
     
@@ -347,7 +329,44 @@ class MAJAScannerController: UIViewController {
         delegate?.didScanBarcodeWithResult(code: "")
         self.dismiss(animated: true, completion: nil)
     }
-    
+    // On Method
+    @obj func turnFlashLightOnAtStart(){
+         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+        guard device.hasTorch else { return }
+        do {
+            try device.lockForConfiguration()
+            
+           
+                do {
+                    try device.setTorchModeOn(level: 1.0)
+                    flashlightButton.isSelected = true
+                } catch {
+                    print(error)
+                }
+            
+            
+            device.unlockForConfiguration()
+        } catch {
+            print(error)
+        }
+    }
+    // On Method
+    @obj func turnFlashLightOffAtEnd(){
+         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+        guard device.hasTorch else { return }
+        do {
+            try device.lockForConfiguration()
+            
+            if (device.torchMode == AVCaptureDevice.TorchMode.on) {
+                device.torchMode = AVCaptureDevice.TorchMode.off
+                flashlightButton.isSelected = false
+            } 
+            
+            device.unlockForConfiguration()
+        } catch {
+            print(error)
+        }
+    }
     @objc func flashlightAction () -> Void {
         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         guard device.hasTorch else { return }
