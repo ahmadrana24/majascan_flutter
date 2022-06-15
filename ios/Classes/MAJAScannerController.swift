@@ -170,7 +170,7 @@ class MAJAScannerController: UIViewController {
                     //       try device.lockForConfiguration()
                           do {
                               try device.setTorchModeOn(level: 1.0)
-                              flashlightButton.isSelected = true
+                            //   flashlightButton.isSelected = true
                           } catch {
                               print(error)
                           }
@@ -230,7 +230,7 @@ class MAJAScannerController: UIViewController {
         // removeFlash
            if (device.torchMode == AVCaptureDevice.TorchMode.on) {
                 device.torchMode = AVCaptureDevice.TorchMode.off
-                flashlightButton.isSelected = false
+                // flashlightButton.isSelected = false
             } 
            NotificationCenter.default.removeObserver(self)
      }
