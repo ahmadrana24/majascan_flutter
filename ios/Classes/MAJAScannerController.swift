@@ -371,7 +371,6 @@ class MAJAScannerController: UIViewController {
         guard device.hasTorch else { return }
         do {
             try device.lockForConfiguration()
-            
             if (device.torchMode == AVCaptureDevice.TorchMode.on) {
                 device.torchMode = AVCaptureDevice.TorchMode.off
                 device.focusMode = AVCaptureDevice.FocusMode.locked
