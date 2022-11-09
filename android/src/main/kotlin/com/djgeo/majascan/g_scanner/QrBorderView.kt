@@ -47,15 +47,15 @@ class QrBorderView @JvmOverloads constructor(
         val cornerWidth = width / 5 //四角落外框寬度
 
         //左上
-        canvas?.drawLine(0f, 0f, cornerWidth, 0f, mPaint)
-        canvas?.drawLine(0f, 0f, 0f, cornerWidth, mPaint)
+        canvas?.drawLine(0f, 0f, 0f, 0f, mPaint)
+        canvas?.drawLine(0f, 0f, 0f, 0f, mPaint)
 
         //右上
         canvas?.drawLine(width, 0f, width, 0f, mPaint)
-        canvas?.drawLine(width, 0f, width, cornerWidth, mPaint)
+        canvas?.drawLine(width, 0f, width, 0f, mPaint)
 
         //左下
-        canvas?.drawLine(0f, height, cornerWidth, height, mPaint)
+        canvas?.drawLine(0f, height, 0f, height, mPaint)
         canvas?.drawLine(0f, height, 0f, height, mPaint)
 
         //右下
