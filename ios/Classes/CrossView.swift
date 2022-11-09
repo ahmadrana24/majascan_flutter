@@ -65,7 +65,6 @@ class CrosshairView: UIView {
         backgroundView.autoLayout.fillSuperview()
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
-
     }
     
     @objc func appEnterForeground() {

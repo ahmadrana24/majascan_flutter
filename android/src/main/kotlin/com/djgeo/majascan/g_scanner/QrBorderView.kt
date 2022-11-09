@@ -51,16 +51,16 @@ class QrBorderView @JvmOverloads constructor(
         canvas?.drawLine(0f, 0f, 0f, cornerWidth, mPaint)
 
         //右上
-        canvas?.drawLine(width - cornerWidth, 0f, width, 0f, mPaint)
+        canvas?.drawLine(width, 0f, width, 0f, mPaint)
         canvas?.drawLine(width, 0f, width, cornerWidth, mPaint)
 
         //左下
         canvas?.drawLine(0f, height, cornerWidth, height, mPaint)
-        canvas?.drawLine(0f, height - cornerWidth, 0f, height, mPaint)
+        canvas?.drawLine(0f, height, 0f, height, mPaint)
 
         //右下
-        canvas?.drawLine(width - cornerWidth, height, width, height, mPaint)
-        canvas?.drawLine(width, height, width, height - cornerWidth, mPaint)
+        canvas?.drawLine(width, height, width, height, mPaint)
+        canvas?.drawLine(width, height, width, height, mPaint)
     }
 
     fun setQRCornerColor(cornerColor: Int) {
