@@ -146,7 +146,7 @@ class ScanFragment : Fragment(), ScanInteractorImpl.ScanCallbackInterface {
             if (scale >= 1F) scale = 1F
             val length = (min(resources.displayMetrics.widthPixels,
                     resources.displayMetrics.heightPixels) * scale).toInt()
-            val layoutParams = RelativeLayout.LayoutParams(length, length/1.5)
+            val layoutParams = RelativeLayout.LayoutParams(300, 200)
             layoutParams.addRule(RelativeLayout.ABOVE)
             mQrView?.layoutParams = layoutParams
             Camera.Parameters parameters = camera.getParameters();
