@@ -38,7 +38,7 @@ class CrosshairView: UIView {
     }
     
     var squareRect: CGRect {
-        return CGRect(x: topLeft.x, y: topLeft.y, width: squareWidth, height: squareWidth)
+        return CGRect(x: 0, y: 0, width: squareWidth, height: squareWidth/2)
     }
     
     var backgroundView = UIView()
