@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 class MajaScan {
   static const MethodChannel _channel = const MethodChannel('majascan');

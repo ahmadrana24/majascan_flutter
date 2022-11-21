@@ -147,7 +147,7 @@ class ScanFragment : Fragment(), ScanInteractorImpl.ScanCallbackInterface {
             val length = (min(resources.displayMetrics.widthPixels,
                     resources.displayMetrics.heightPixels) * scale).toInt()
             val layoutParams = RelativeLayout.LayoutParams(length, length/1.5)
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START)
+            layoutParams.addRule(RelativeLayout.ABOVE)
             mQrView?.layoutParams = layoutParams
             Camera.Parameters parameters = camera.getParameters();
             int maxZoom = parameters.getMaxZoom(); 
