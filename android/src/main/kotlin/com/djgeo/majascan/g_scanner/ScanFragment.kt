@@ -141,23 +141,23 @@ class ScanFragment : Fragment(), ScanInteractorImpl.ScanCallbackInterface {
             mScanBar?.background = gd
 
             //依據BundleData調整mQrView寬高
-            // var scale = args.getFloat(QrCodeScannerActivity.SCAN_AREA_SCALE)
-            // if (scale <= 0F) scale = 0F
-            // if (scale >= 1F) scale = 1F
-            // val length = (min(resources.displayMetrics.widthPixels,
-            //         resources.displayMetrics.heightPixels) * scale).toInt()
-            // val layoutParams = RelativeLayout.LayoutParams(length, length)
-            // layoutParams.addRule(RelativeLayout.ABOVE)
-            // mQrView?.layoutParams = layoutParams
-            // Camera.Parameters parameters = camera.getParameters();
-            // int maxZoom = parameters.getMaxZoom(); 
-            // if (parameters.isZoomSupported()) {
-            //     if (zoom >=0 && zoom < maxZoom) {
-            //         parameters.setZoom(zoom);
-            //     } else {
-            //         // zoom parameter is incorrect
-            //     }
-            // }
+            var scale = args.getFloat(QrCodeScannerActivity.SCAN_AREA_SCALE)
+            if (scale <= 0F) scale = 0F
+            if (scale >= 1F) scale = 1F
+            val length = (min(resources.displayMetrics.widthPixels,
+                    resources.displayMetrics.heightPixels) * scale).toInt()
+            val layoutParams = RelativeLayout.LayoutParams(length, length/2)
+            layoutParams.addRule(RelativeLayout.ABOVE)
+            mQrView?.layoutParams = layoutParams
+            Camera.Parameters parameters = camera.getParameters();
+            int maxZoom = parameters.getMaxZoom(); 
+            if (parameters.isZoomSupported()) {
+                if (zoom >=0 && zoom < maxZoom) {
+                    parameters.setZoom(zoom);
+                } else {
+                    // zoom parameter is incorrect
+                }
+            }
         }
     }
 
