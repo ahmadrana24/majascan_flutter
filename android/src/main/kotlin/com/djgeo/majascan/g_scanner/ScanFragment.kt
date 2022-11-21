@@ -146,9 +146,18 @@ class ScanFragment : Fragment(), ScanInteractorImpl.ScanCallbackInterface {
             if (scale >= 1F) scale = 1F
             val length = (min(resources.displayMetrics.widthPixels,
                     resources.displayMetrics.heightPixels) * scale).toInt()
-            val layoutParams = RelativeLayout.LayoutParams(length, length)
-            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+            val layoutParams = RelativeLayout.LayoutParams(length, length/1.5)
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START)
             mQrView?.layoutParams = layoutParams
+            Camera.Parameters parameters = camera.getParameters();
+            int maxZoom = parameters.getMaxZoom(); 
+            if (parameters.isZoomSupported()) {
+                if (zoom >=0 && zoom < maxZoom) {
+                    parameters.setZoom(zoom);
+                } else {
+                    // zoom parameter is incorrect
+                }
+            }
         }
     }
 
