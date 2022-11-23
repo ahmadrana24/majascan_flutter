@@ -26,15 +26,15 @@ class CrosshairView: UIView {
     }
     
     var topRight: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2-squareWidth/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2+squareWidth/2, y: UIScreen.main.bounds.height/2-squareWidth/2)
     }
     
     var bottomLeft: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2-squareWidth/2, y: UIScreen.main.bounds.height/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2-squareWidth/2, y: UIScreen.main.bounds.height/2+squareWidth/2)
     }
     
     var bottomRight: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2+squareWidth/2, y: UIScreen.main.bounds.height/2+squareWidth/2)
     }
     
     var squareRect: CGRect {
@@ -65,7 +65,6 @@ class CrosshairView: UIView {
         backgroundView.autoLayout.fillSuperview()
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
-
     }
     
     @objc func appEnterForeground() {
