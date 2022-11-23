@@ -43,7 +43,7 @@ class CrosshairView: UIView {
     
     var backgroundView = UIView()
     var backgroundMaskLayer = CAShapeLayer()
-    var scanView = UIView(frame: CGRect.rect)
+    var scanView = UIView(frame: CGRect.zero)
     var scanGradientLayer = CAGradientLayer()
     var color: UIColor!
     var scannerColor: UIColor!
