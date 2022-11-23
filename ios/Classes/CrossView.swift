@@ -26,15 +26,15 @@ class CrosshairView: UIView {
     }
     
     var topRight: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2+squareWidth/2, y: UIScreen.main.bounds.height/2-squareWidth/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2-squareWidth/2)
     }
     
     var bottomLeft: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2-squareWidth/2, y: UIScreen.main.bounds.height/2+squareWidth/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2-squareWidth/2, y: UIScreen.main.bounds.height/2)
     }
     
     var bottomRight: CGPoint {
-        return CGPoint(x: UIScreen.main.bounds.width/2+squareWidth/2, y: UIScreen.main.bounds.height/2+squareWidth/2)
+        return CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
     }
     
     var squareRect: CGRect {
@@ -43,7 +43,7 @@ class CrosshairView: UIView {
     
     var backgroundView = UIView()
     var backgroundMaskLayer = CAShapeLayer()
-    var scanView = UIView(frame: CGRect.zero)
+    var scanView = UIView(frame: CGRect.rect)
     var scanGradientLayer = CAGradientLayer()
     var color: UIColor!
     var scannerColor: UIColor!
