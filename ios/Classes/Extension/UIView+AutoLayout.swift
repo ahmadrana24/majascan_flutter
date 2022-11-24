@@ -81,10 +81,10 @@ struct Layout {
     
     @discardableResult func centerVertically() -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: element,
-                                            attribute: .top,
+                                            attribute: .centerY,
                                             relatedBy: .equal,
                                             toItem: safeSuperview(),
-                                            attribute: .top,
+                                            attribute: .centerY,
                                             multiplier: 1.0, constant: 0)
         safeSuperview().addConstraint(constraint)
         return constraint
@@ -92,10 +92,10 @@ struct Layout {
     
     @discardableResult func centerHorizontally() -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: element,
-                                            attribute: .top,
+                                            attribute: .centerX,
                                             relatedBy: .equal,
                                             toItem: safeSuperview(),
-                                            attribute: .top,
+                                            attribute: .centerX,
                                             multiplier: 1.0, constant: 0)
         safeSuperview().addConstraint(constraint)
         return constraint
@@ -103,10 +103,10 @@ struct Layout {
     
     @discardableResult func pinLeadingToSuperview(constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: element,
-                                            attribute: .top,
+                                            attribute: .leading,
                                             relatedBy: .equal,
                                             toItem: safeSuperview(),
-                                            attribute: .top,
+                                            attribute: .leading,
                                             multiplier: 1, constant: constant)
         
         safeSuperview().addConstraint(constraint)
@@ -115,10 +115,10 @@ struct Layout {
     
     @discardableResult func pinTrailingToSuperview(constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: element,
-                                            attribute: .top,
+                                            attribute: .trailing,
                                             relatedBy: .equal,
                                             toItem: safeSuperview(),
-                                            attribute: .top,
+                                            attribute: .trailing,
                                             multiplier: 1, constant: constant)
         safeSuperview().addConstraint(constraint)
         return constraint
@@ -148,10 +148,10 @@ struct Layout {
     
     @discardableResult func pinBottomToView(view:UIView,constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: element,
-                                            attribute: .top,
+                                            attribute: .bottom,
                                             relatedBy: .equal,
                                             toItem: view,
-                                            attribute: .top,
+                                            attribute: .bottom,
                                             multiplier: 1, constant: constant)
         safeSuperview().addConstraint(constraint)
         return constraint

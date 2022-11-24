@@ -38,7 +38,7 @@ class CrosshairView: UIView {
     }
     
     var squareRect: CGRect {
-        return CGRect(x: 0, y: 0, width: squareWidth, height: squareWidth/2)
+        return CGRect(x: topLeft.x, y: topLeft.y, width: squareWidth, height: squareWidth)
     }
     
     var backgroundView = UIView()
@@ -65,6 +65,7 @@ class CrosshairView: UIView {
         backgroundView.autoLayout.fillSuperview()
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
+
     }
     
     @objc func appEnterForeground() {
