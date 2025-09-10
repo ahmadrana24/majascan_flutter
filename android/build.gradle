@@ -1,46 +1,48 @@
-group 'com.djgeo.majascan'
-version '1.0-SNAPSHOT'
+// majascan/android/build.gradle  (library module)
 
-buildscript {
-    ext.kotlin_version = '1.4.10'
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
-
-rootProject.allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.djgeo.majascan'      // ← pick a stable namespace for the library
+    compileSdk 34
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
     defaultConfig {
-        minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk 23
+        // targetSdk 34   // optional
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+    // JitPack not required for dm7:1.9.8, add only if you later need a GitHub lib:
+    // maven { url = uri('https://jitpack.io') }
+}
+
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"        // stdlib version from root pluginManagement
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+
+    // IMPORTANT: use 1.9.8 (1.9.13 is not on Maven Central)
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

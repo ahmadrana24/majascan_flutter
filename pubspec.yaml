@@ -5,7 +5,7 @@ version: 0.5.0
 homepage: https://maja0270558.github.io/majascan_flutter/.
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.10.0"
 
 dependencies:
@@ -29,14 +29,13 @@ flutter:
   #   androidPackage: com.djgeo.majascan
   #   pluginClass: MajascanPlugin
   plugin:
-        platforms:
-            android:
-                package: com.djgeo.majascan
-                pluginClass: MajascanPlugin
-            ios:
-                pluginClass: MajascanPlugin
-    
-  
+    platforms:
+      android:
+        package: com.djgeo.majascan
+        pluginClass: MajascanPlugin
+      ios:
+        pluginClass: MajascanPlugin
+
   assets:
     - assets/
 
