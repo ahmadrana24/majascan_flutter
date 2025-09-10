@@ -1,61 +1,46 @@
-// majascan/android/build.gradle  (library module)
-
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-}
-
 group 'com.djgeo.majascan'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    ext.kotlin_version = '1.9.0'
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
 android {
-    namespace 'com.djgeo.majascan'   // required by AGP 8+
-    compileSdk 35                    // or 34; 35 is fine
-
+    namespace 'com.djgeo.majascan'
+    compileSdkVersion 35
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
     defaultConfig {
-        minSdk 23                    // 23+ is safest with modern deps; 24 also OK
-        // targetSdk 35               // optional
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        minSdkVersion 24
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    // Java/Kotlin toolchains → 17 (matches modern AGP/Kotlin)
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '17'
-        // If the sources are very old Kotlin, you can relax these:
-        // languageVersion = '1.5'
-        // apiVersion = '1.5'
-    }
-
-    // Kotlin sources are already picked up; no need to tweak sourceSets
-    // sourceSets { main.java.srcDirs += 'src/main/kotlin' }
-
     lintOptions {
         disable 'InvalidPackage'
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    // Add JitPack only if you later pull a GitHub-hosted artifact:
-    // maven { url = uri('https://jitpack.io') }
-}
-
 dependencies {
-    // Kotlin stdlib version is managed by the Kotlin plugin; keeping explicit is fine:
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
-    // Update appcompat from 1.0.0 → modern
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-
-    // IMPORTANT: 1.9.13 is not published on active repos; 1.9.8 is
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.5.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
